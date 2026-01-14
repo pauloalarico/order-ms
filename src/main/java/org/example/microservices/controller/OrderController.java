@@ -4,7 +4,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.dto.request.RequestOrderDTO;
 import org.example.microservices.dto.response.CompleteOrderDTO;
+import org.example.microservices.http.ProductClient;
 import org.example.microservices.service.OrderService;
+import org.example.microservices.service.ProductService;
 import org.example.microservices.utils.OrderMapperDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,10 +21,12 @@ public class OrderController {
 
     private final OrderService orderService;
     private final OrderMapperDTO mapperDto;
+    private final ProductService productService;
 
     @PostMapping
     public ResponseEntity<CompleteOrderDTO> newOrder(@RequestBody @Valid RequestOrderDTO dto) {
         var order = orderService.createOrder(dto);
+        productService.verifyProduct(dto);
         return ResponseEntity.ok(mapperDto.createCompleteDto(order));
     }
 }

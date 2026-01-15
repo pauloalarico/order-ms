@@ -3,12 +3,14 @@ package org.example.microservices.service;
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.dto.request.RequestOrderDTO;
 import org.example.microservices.http.ProductClient;
+import org.example.microservices.utils.ProductDtoMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductClient productClient;
+    private final ProductDtoMapper mapper;
 
     public void verifyProduct(RequestOrderDTO dto) {
         var productDto = productClient.verifyProduct(String.valueOf(dto.productId()));
@@ -19,7 +21,7 @@ public class ProductService {
     }
 
     private void decreaseStock(String id, Integer quantity) {
-        productClient.decreaseStock(id, quantity);
+        var requestBodyDto = mapper.decreaseStockMapper(quantity);
+        productClient.decreaseStock(id, requestBodyDto);
     }
-
 }

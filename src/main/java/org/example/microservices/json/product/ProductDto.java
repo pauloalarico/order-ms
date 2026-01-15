@@ -8,7 +8,7 @@ public record ProductDto(
         @JsonProperty("productId")
         String id,
         BigDecimal price,
-        Integer stockQuantity
+        Integer stockQuantity   
 
 ) {
 }

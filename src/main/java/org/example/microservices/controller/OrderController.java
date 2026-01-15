@@ -27,6 +27,7 @@ public class OrderController {
     public ResponseEntity<CompleteOrderDTO> newOrder(@RequestBody @Valid RequestOrderDTO dto) {
         var order = orderService.createOrder(dto);
         productService.verifyProduct(dto);
+
         return ResponseEntity.ok(mapperDto.createCompleteDto(order));
     }
 }

@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.example.microservices.dto.request.RequestOrderDTO;
 import org.example.microservices.enums.StatusOrder;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -34,5 +35,9 @@ public class Order {
         this.quantity = dto.quantity();
         this.totalValue = null;
         this.statusOrder = StatusOrder.CREATED;
+    }
+
+    public void calculateTotalValue(BigDecimal price, Integer quantity) {
+        this.totalValue = price.doubleValue() * quantity;
     }
 }

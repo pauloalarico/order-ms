@@ -6,6 +6,8 @@ import org.example.microservices.entitie.Order;
 import org.example.microservices.infra.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 @RequiredArgsConstructor
 public class OrderService {
@@ -16,5 +18,9 @@ public class OrderService {
     public Order createOrder(RequestOrderDTO dto) {
         var order = new Order(dto);
         return repository.save(order);
+    }
+
+    public void calculateTotalValue(Order order, BigDecimal price, Integer quantity) {
+        order.calculateTotalValue(price, quantity);
     }
 }

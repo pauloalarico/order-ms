@@ -25,7 +25,7 @@ public class Order {
     @Column(name = "nr_qty_product")
     private Integer quantity;
     @Column(name = "vl_total_value")
-    private Double totalValue;
+    private BigDecimal totalValue;
     @Column(name = "st_order")
     @Enumerated(EnumType.STRING)
     private StatusOrder statusOrder;
@@ -38,6 +38,6 @@ public class Order {
     }
 
     public void calculateTotalValue(BigDecimal price, Integer quantity) {
-        this.totalValue = price.doubleValue() * quantity;
+        this.totalValue = price.multiply(BigDecimal.valueOf(quantity));
     }
 }

@@ -32,7 +32,7 @@ public class OrderController {
         var order = orderService.createOrder(dto);
         var productDto = productService.decreaseStock(dto);
         orderService.calculateTotalValue(order, productDto.price(), order.getQuantity());
-        var paymentProcess = paymentService.realizePayment(order.getOrderId(), BigDecimal.valueOf(order.getTotalValue()));
+        var paymentProcess = paymentService.realizePayment(order.getOrderId(), (order.getTotalValue()));
         return ResponseEntity.ok(mapperDto.createCompleteDto(order));
     }
 }

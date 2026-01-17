@@ -3,13 +3,14 @@ package org.example.microservices.dto.response;
 import org.example.microservices.entitie.Order;
 import org.example.microservices.enums.StatusOrder;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 public record OrderDTO(
         UUID orderId,
         UUID productId,
         Integer quantity,
-        Double totalValue,
+        BigDecimal totalValue,
         StatusOrder status
 ) {
     public OrderDTO(Order order) {

@@ -13,16 +13,17 @@ public class ProductService {
     private final ProductClient productClient;
     private final ProductDtoMapper mapper;
 
-    public ProductDto verifyProduct(RequestOrderDTO dto) {
+    private void verifyProduct(RequestOrderDTO dto) {
         var productDto = productClient.verifyProduct(String.valueOf(dto.productId()));
         if(productDto.id() == null) {
             throw new RuntimeException("Product not found, or does not exists.");
         }
-        return decreaseStock(String.valueOf(dto.productId()), dto.quantity());
     }
 
-    private ProductDto decreaseStock(String id, Integer quantity) {
-        var requestBodyDto = mapper.decreaseStockMapper(quantity);
-        return productClient.decreaseStock(id, requestBodyDto);
+     public ProductDto decreaseStock(RequestOrderDTO dto) {
+        verifyProduct(dto);
+        var requestBodyDto = mapper.decreaseStockMapper(dto.quantity());
+        var responseBodyDto = productClient.decreaseStock((dto.productId()), requestBodyDto);
+        return responseBodyDto.products().getFirst();
     }
 }

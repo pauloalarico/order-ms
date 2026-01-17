@@ -30,7 +30,7 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<CompleteOrderDTO> newOrder(@RequestBody @Valid RequestOrderDTO dto) {
         var order = orderService.createOrder(dto);
-        var productDto = productService.verifyProduct(dto);
+        var productDto = productService.decreaseStock(dto);
         orderService.calculateTotalValue(order, productDto.price(), order.getQuantity());
         var paymentProcess = paymentService.realizePayment(order.getOrderId(), BigDecimal.valueOf(order.getTotalValue()));
         return ResponseEntity.ok(mapperDto.createCompleteDto(order));

@@ -22,3 +22,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8081/eureka
     enabled: true
+
+logging.level.org.example.microservices.http.ProductClient: DEBUG
+
+

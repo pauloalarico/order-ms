@@ -40,4 +40,12 @@ public class Order {
     public void calculateTotalValue(BigDecimal price, Integer quantity) {
         this.totalValue = price.multiply(BigDecimal.valueOf(quantity));
     }
+
+    public void cancelStatusOrder() {
+        this.statusOrder = StatusOrder.CANCELLED;
+    }
+
+    public void paymentApproved() {
+        this.statusOrder = StatusOrder.PAID;
+    }
 }

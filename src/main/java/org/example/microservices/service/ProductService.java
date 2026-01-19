@@ -7,6 +7,8 @@ import org.example.microservices.json.product.ProductDto;
 import org.example.microservices.utils.ProductDtoMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -25,5 +27,9 @@ public class ProductService {
         var requestBodyDto = mapper.decreaseStockMapper(dto.quantity());
         var responseBodyDto = productClient.decreaseStock((dto.productId()), requestBodyDto);
         return responseBodyDto.products().getFirst();
+    }
+
+    public void resetOrderProductStock(UUID uuid, Integer quantity) {
+        productClient.resetProductQuantityByOrder(uuid, quantity);
     }
 }

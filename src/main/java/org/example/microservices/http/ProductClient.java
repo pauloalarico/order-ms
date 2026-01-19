@@ -19,4 +19,7 @@ public interface ProductClient {
 
     @RequestMapping(method = RequestMethod.PUT, value  = "/products/{id}/decrease-stock")
     ListProductDto decreaseStock(@PathVariable UUID id, @RequestBody DecreaseStockDto dto);
+
+    @RequestMapping(method = RequestMethod.PUT, value ="/{id}/reset-stock/{quantity}")
+    void resetProductQuantityByOrder(@PathVariable UUID id, @PathVariable Integer quantity);
 }

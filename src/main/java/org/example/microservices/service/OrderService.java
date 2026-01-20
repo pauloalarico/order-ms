@@ -1,5 +1,6 @@
 package org.example.microservices.service;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.dto.request.RequestOrderDTO;
@@ -24,10 +25,12 @@ public class OrderService {
         return repository.save(order);
     }
 
+    @Transactional
     public void calculateTotalValue(Order order, BigDecimal price, Integer quantity) {
         order.calculateTotalValue(price, quantity);
     }
 
+    @Transactional
     public void seeIfIsPaid(ListReponsePaymentDto paymentDto, Order order, UUID uuid, Integer quantity) {
         var payment = paymentDto.payments().getFirst();
         if(payment.status().equals("REJECTED")) {

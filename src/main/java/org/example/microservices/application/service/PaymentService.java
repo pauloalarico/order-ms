@@ -1,0 +1,22 @@
+package org.example.microservices.application.service;
+
+import lombok.RequiredArgsConstructor;
+import org.example.microservices.application.dto.response.ListReponsePaymentDto;
+import org.example.microservices.http.PaymentClient;
+import org.example.microservices.utils.PaymentMapperDto;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@Service
+@RequiredArgsConstructor
+public class PaymentService {
+    private final PaymentClient paymentClient;
+    private final PaymentMapperDto mapperPayment;
+
+    public ListReponsePaymentDto realizePayment(UUID orderId, BigDecimal amount){
+        var dtoRequest = mapperPayment.requestDto(orderId, amount);
+        return paymentClient.realizePayment(dtoRequest);
+    }
+}

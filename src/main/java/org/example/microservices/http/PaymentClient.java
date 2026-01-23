@@ -1,7 +1,7 @@
 package org.example.microservices.http;
 
-import org.example.microservices.dto.request.RealizePaymentDto;
-import org.example.microservices.dto.response.ListReponsePaymentDto;
+import org.example.microservices.application.dto.request.RealizePaymentDto;
+import org.example.microservices.application.dto.response.ListReponsePaymentDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

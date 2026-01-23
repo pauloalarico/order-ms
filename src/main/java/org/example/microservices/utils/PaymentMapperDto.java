@@ -1,6 +1,6 @@
 package org.example.microservices.utils;
 
-import org.example.microservices.dto.request.RealizePaymentDto;
+import org.example.microservices.application.dto.request.RealizePaymentDto;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

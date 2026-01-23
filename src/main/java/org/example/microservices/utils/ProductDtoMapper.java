@@ -1,6 +1,6 @@
 package org.example.microservices.utils;
 
-import org.example.microservices.dto.request.DecreaseStockDto;
+import org.example.microservices.application.dto.request.DecreaseStockDto;
 import org.springframework.stereotype.Component;
 
 @Component

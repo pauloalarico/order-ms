@@ -1,9 +1,9 @@
 package org.example.microservices.http;
 
-import org.example.microservices.configuration.FeignClientConfig;
-import org.example.microservices.dto.request.DecreaseStockDto;
-import org.example.microservices.json.product.ListProductDto;
-import org.example.microservices.json.product.ProductDto;
+import org.example.microservices.infra.configuration.configuration.FeignClientConfig;
+import org.example.microservices.application.dto.request.DecreaseStockDto;
+import org.example.microservices.application.dto.json.product.ListProductDto;
+import org.example.microservices.application.dto.json.product.ProductDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

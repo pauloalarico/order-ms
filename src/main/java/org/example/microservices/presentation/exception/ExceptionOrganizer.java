@@ -1,4 +1,4 @@
-package org.example.microservices.presentation.controller.exception;
+package org.example.microservices.presentation.exception;
 
 import feign.FeignException;
 import jakarta.validation.ValidationException;

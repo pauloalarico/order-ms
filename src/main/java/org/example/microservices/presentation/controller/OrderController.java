@@ -8,6 +8,7 @@ import org.example.microservices.application.service.OrderService;
 import org.example.microservices.application.service.PaymentService;
 import org.example.microservices.application.service.ProductService;
 import org.example.microservices.utils.OrderMapperDTO;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ public class OrderController {
     private final OrderMapperDTO mapperDto;
     private final ProductService productService;
     private final PaymentService paymentService;
+    private final RabbitTemplate rabbitTemplate;
 
     @PostMapping
     public ResponseEntity<CompleteOrderDTO> newOrder(@RequestBody @Valid RequestOrderDTO dto) {

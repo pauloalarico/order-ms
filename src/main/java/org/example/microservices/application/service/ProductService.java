@@ -5,6 +5,7 @@ import org.example.microservices.application.dto.request.RequestOrderDTO;
 import org.example.microservices.http.ProductClient;
 import org.example.microservices.application.dto.json.product.ProductDto;
 import org.example.microservices.utils.ProductDtoMapper;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -14,6 +15,12 @@ import java.util.UUID;
 public class ProductService {
     private final ProductClient productClient;
     private final ProductDtoMapper mapper;
+    private final RabbitTemplate rabbitTemplate;
+
+
+    public void verifyIfProductExists(RequestOrderDTO dto) {
+        rabbitTemplate.convertAndSend(dto.productId());
+    }
 
     private void verifyProduct(RequestOrderDTO dto) {
         var productDto = productClient.verifyProduct(String.valueOf(dto.productId()));

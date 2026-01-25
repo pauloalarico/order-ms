@@ -1,10 +1,8 @@
 package org.example.microservices.application.service;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.application.dto.request.RequestOrderDTO;
-import org.example.microservices.application.dto.response.ListReponsePaymentDto;
 import org.example.microservices.application.dto.response.PaymentReponseDto;
 import org.example.microservices.domain.entitie.Order;
 import org.example.microservices.infra.repository.OrderRepository;
@@ -35,6 +33,7 @@ public class OrderService {
     @Transactional
     public void calculateTotalValue(Order order, BigDecimal price, Integer quantity) {
         order.calculateTotalValue(price, quantity);
+        repository.save(order);
     }
 
     @Transactional

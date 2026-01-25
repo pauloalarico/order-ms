@@ -19,8 +19,8 @@ public class ProductService {
     private final RabbitTemplate rabbitTemplate;
 
 
-    public void verifyIfProductExists(RequestOrderDTO dto) {
-        var productId = new ProductSenderDTO(dto.productId());
+    public void verifyIfProductExists(UUID uuid) {
+        var productId = new ProductSenderDTO(uuid);
         rabbitTemplate.convertAndSend("orders-created.queue","", productId);
     }
 

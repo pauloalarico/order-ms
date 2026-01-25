@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public record PaymentReponseDto(
         UUID paymentId,
-        UUID orderId,
+        UUID correlationId,
         BigDecimal amount,
         String status
 ){

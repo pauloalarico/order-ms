@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.application.dto.request.RequestOrderDTO;
 import org.example.microservices.application.dto.response.ListReponsePaymentDto;
+import org.example.microservices.application.dto.response.PaymentReponseDto;
 import org.example.microservices.domain.entitie.Order;
 import org.example.microservices.infra.repository.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -37,11 +38,12 @@ public class OrderService {
     }
 
     @Transactional
-    public void seeIfIsPaid(ListReponsePaymentDto paymentDto, Order order, UUID uuid, Integer quantity) {
-        var payment = paymentDto.payments().getFirst();
+    public void seeIfIsPaid(PaymentReponseDto payment) {
+        var order = getOrderByCorrelationId(payment.correlationId().toString());
         if(payment.status().equals("REJECTED")) {
             order.cancelStatusOrder();
-            productService.resetOrderProductStock(uuid, quantity);
+            publisher.resetStockByOrder(order.getCorrelationId(), order.getProductId(), order.getQuantity());
+            //productService.resetOrderProductStock(uuid, quantity);
         }
         if(payment.status().equals("APPROVED")) {
             order.paymentApproved();

@@ -20,7 +20,7 @@ public class ProductService {
     private final RabbitPublisherService publisher;
 
     public void getProductAndDecreaseStock(RequestOrderDTO dto) {
-        publisher.verifyProduct(dto);
+        publisher.verifyProduct(dto.productId(), dto);
     }
 
     private void verifyProduct(RequestOrderDTO dto) {

@@ -71,4 +71,20 @@ public class RabbitMqConfig {
         factory.setMessageConverter(messageConverter());
         return factory;
     }
+
+    @Bean
+    public Queue createOrderCanceled() {
+        return new Queue("order-canceled.queue", false);
+    }
+
+    @Bean
+    public FanoutExchange createOrderCanceledExchange() {
+        return new FanoutExchange("payment-created.ex");
+    }
+
+    @Bean
+    public Binding createCanceledBinding(@Qualifier("createOrderCanceledExchange") FanoutExchange exchange) {
+        return BindingBuilder.bind(createNewPaymentOrder()).to(exchange);
+    }
 }
+

@@ -1,6 +1,6 @@
 package org.example.microservices.http;
 
-import org.example.microservices.infra.configuration.configuration.FeignClientConfig;
+import org.example.microservices.infra.configuration.FeignClientConfig;
 import org.example.microservices.application.dto.request.DecreaseStockDto;
 import org.example.microservices.application.dto.json.product.ListProductDto;
 import org.example.microservices.application.dto.json.product.ProductDto;

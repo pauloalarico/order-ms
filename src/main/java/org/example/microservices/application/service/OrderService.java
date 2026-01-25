@@ -1,6 +1,7 @@
 package org.example.microservices.application.service;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.application.dto.request.RequestOrderDTO;
 import org.example.microservices.application.dto.response.ListReponsePaymentDto;
@@ -17,6 +18,12 @@ public class OrderService {
 
     private final OrderRepository repository;
     private final ProductService productService;
+    private final RabbitPublisherService publisher;
+
+
+    public void verifyProduct(UUID correlationId, RequestOrderDTO dto) {
+        publisher.verifyProduct(correlationId, dto);
+    }
 
 
     public Order createOrder(RequestOrderDTO dto) {
@@ -39,5 +46,10 @@ public class OrderService {
         if(payment.status().equals("APPROVED")) {
             order.paymentApproved();
         }
+    }
+
+    public Order getOrderByCorrelationId(String correlationId) {
+        return repository.getOrder(UUID.fromString(correlationId)).orElseThrow(()
+                -> new RuntimeException("Order not found or does not exist."));
     }
 }

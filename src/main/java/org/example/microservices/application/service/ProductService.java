@@ -1,5 +1,6 @@
 package org.example.microservices.application.service;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.application.dto.json.product.ProductSenderDTO;
 import org.example.microservices.application.dto.request.RequestOrderDTO;
@@ -16,12 +17,10 @@ import java.util.UUID;
 public class ProductService {
     private final ProductClient productClient;
     private final ProductDtoMapper mapper;
-    private final RabbitTemplate rabbitTemplate;
+    private final RabbitPublisherService publisher;
 
-
-    public void verifyIfProductExists(UUID uuid) {
-        var productId = new ProductSenderDTO(uuid);
-        rabbitTemplate.convertAndSend("orders-created.queue","", productId);
+    public void getProductAndDecreaseStock(RequestOrderDTO dto) {
+        publisher.verifyProduct(dto);
     }
 
     private void verifyProduct(RequestOrderDTO dto) {
@@ -41,4 +40,6 @@ public class ProductService {
     public void resetOrderProductStock(UUID uuid, Integer quantity) {
         productClient.resetProductQuantityByOrder(uuid, quantity);
     }
+
+
 }

@@ -3,6 +3,8 @@ package org.example.microservices.application.dto.json.product;
 import java.util.UUID;
 
 public record ProductSenderDTO(
-        UUID id
+        UUID correlationId,
+        UUID id,
+        Integer quantity
 ) {
 }

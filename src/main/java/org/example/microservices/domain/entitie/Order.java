@@ -20,6 +20,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "cd_idnt_order", unique = true)
     private UUID orderId;
+    @Column(name = "cd_correlation_id", unique = true)
+    private UUID correlationId;
     @Column(name = "cd_idnt_product")
     private UUID productId;
     @Column(name = "nr_qty_product")
@@ -32,6 +34,7 @@ public class Order {
 
     public Order(RequestOrderDTO dto) {
         this.productId = dto.productId();
+        this.correlationId = generateUid();
         this.quantity = dto.quantity();
         this.totalValue = null;
         this.statusOrder = StatusOrder.CREATED;
@@ -47,5 +50,9 @@ public class Order {
 
     public void paymentApproved() {
         this.statusOrder = StatusOrder.PAID;
+    }
+
+    private UUID generateUid() {
+        return UUID.randomUUID();
     }
 }

@@ -1,4 +1,4 @@
-package org.example.microservices.infra.configuration.configuration;
+package org.example.microservices.infra.configuration;
 
 import feign.Logger;
 import org.springframework.context.annotation.Bean;

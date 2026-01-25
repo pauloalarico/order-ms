@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public record NewPaymentDto(
         @NotNull
-        UUID orderId,
+        UUID correlationId,
         @NotNull
         @Positive
         BigDecimal amount

@@ -10,6 +10,7 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
@@ -39,8 +40,23 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    public Binding createOrderBinding(FanoutExchange exchange) {
+    public Binding createOrderBinding(@Qualifier("createExchange") FanoutExchange exchange) {
         return BindingBuilder.bind(createOrdered()).to(exchange);
+    }
+
+    @Bean
+    public Queue createNewPaymentOrder() {
+        return new Queue("payment-created.queue", false);
+    }
+
+    @Bean
+    public FanoutExchange createPaymentOrderExchange() {
+        return new FanoutExchange("payment-created.ex");
+    }
+
+    @Bean
+    public Binding createPaymentBinding(@Qualifier("createPaymentOrderExchange") FanoutExchange exchange) {
+        return BindingBuilder.bind(createNewPaymentOrder()).to(exchange);
     }
 
     @Bean

@@ -1,6 +1,7 @@
 package org.example.microservices.application.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.microservices.application.dto.json.product.ProductSenderDTO;
 import org.example.microservices.application.dto.request.RequestOrderDTO;
 import org.example.microservices.http.ProductClient;
 import org.example.microservices.application.dto.json.product.ProductDto;
@@ -19,7 +20,8 @@ public class ProductService {
 
 
     public void verifyIfProductExists(RequestOrderDTO dto) {
-        rabbitTemplate.convertAndSend(dto.productId());
+        var productId = new ProductSenderDTO(dto.productId());
+        rabbitTemplate.convertAndSend("orders-created.queue","", productId);
     }
 
     private void verifyProduct(RequestOrderDTO dto) {

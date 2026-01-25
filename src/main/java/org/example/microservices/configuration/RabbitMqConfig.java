@@ -1,6 +1,9 @@
 package org.example.microservices.configuration;
 
 
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -14,7 +17,7 @@ public class RabbitMqConfig {
 
     @Bean
     public Queue createOrdered() {
-        return new Queue("orders-created", false);
+        return new Queue("orders-created.queue", false);
     }
 
     @Bean
@@ -25,5 +28,15 @@ public class RabbitMqConfig {
     @Bean
     public ApplicationListener<ApplicationReadyEvent> initializeRabbit(RabbitAdmin rabbitAdmin) {
         return event -> rabbitAdmin.initialize();
+    }
+
+    @Bean
+    public FanoutExchange createExchange() {
+        return new FanoutExchange("order-created.ex");
+    }
+
+    @Bean
+    public Binding createOrderBinding(FanoutExchange exchange) {
+        return BindingBuilder.bind(createOrdered()).to(exchange);
     }
 }

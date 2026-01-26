@@ -7,12 +7,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderMapperDTO {
-    public CompleteOrderDTO createCompleteDto(Order order) {
+    public static CompleteOrderDTO createCompleteDto(Order order) {
         var orderDto = new OrderDTO(order);
         return new CompleteOrderDTO(orderDto);
     }
 
-    public OrderDTO createOrderDto(Order order) {
+    public static OrderDTO createOrderDto(Order order) {
         return new OrderDTO(order);
     }
 }
+

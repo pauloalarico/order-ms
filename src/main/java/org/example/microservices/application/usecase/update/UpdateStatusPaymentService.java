@@ -1,4 +1,4 @@
-package org.example.microservices.application.usecase;
+package org.example.microservices.application.usecase.update;
 
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.application.dto.command.SetOrderStatus;

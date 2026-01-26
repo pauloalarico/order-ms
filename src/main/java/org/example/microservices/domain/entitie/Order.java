@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.example.microservices.application.dto.shared.request.RequestOrderDTO;
+import org.example.microservices.application.dto.command.RequestOrderDTO;
 import org.example.microservices.domain.enums.StatusOrder;
 
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package org.example.microservices.application.usecase;
+package org.example.microservices.application.usecase.value;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

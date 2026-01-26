@@ -1,4 +1,4 @@
-package org.example.microservices.application.dto.shared.request;
+package org.example.microservices.application.dto.command;
 
 import jakarta.validation.constraints.NotNull;
 

@@ -11,4 +11,7 @@ import java.util.UUID;
 public interface OrderRepository extends JpaRepository<Order, UUID> {
     @Query("SELECT o FROM Order o WHERE o.correlationId = :uuid")
     Optional<Order> getOrder(@Param("uuid") UUID uuid);
+
+    @Query("SELECT o FROM Order o WHERE o.orderId = :orderId")
+    Optional<Order> getOrderByOrderId(@Param("orderId") String orderId);
 }

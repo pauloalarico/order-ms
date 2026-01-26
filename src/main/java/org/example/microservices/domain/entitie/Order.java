@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.example.microservices.application.dto.request.RequestOrderDTO;
+import org.example.microservices.application.dto.shared.request.RequestOrderDTO;
 import org.example.microservices.domain.enums.StatusOrder;
 
 import java.math.BigDecimal;
@@ -40,8 +40,8 @@ public class Order {
         this.statusOrder = StatusOrder.CREATED;
     }
 
-    public void calculateTotalValue(BigDecimal price, Integer quantity) {
-        this.totalValue = price.multiply(BigDecimal.valueOf(quantity));
+    public void calculateTotalValue(BigDecimal price) {
+        this.totalValue = price.multiply(BigDecimal.valueOf(this.quantity));
     }
 
     public void cancelStatusOrder() {

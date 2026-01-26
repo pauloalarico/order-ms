@@ -1,7 +1,7 @@
 package org.example.microservices.utils;
 
-import org.example.microservices.application.dto.response.CompleteOrderDTO;
-import org.example.microservices.application.dto.response.OrderDTO;
+import org.example.microservices.application.dto.shared.response.CompleteOrderDTO;
+import org.example.microservices.application.dto.shared.response.OrderDTO;
 import org.example.microservices.domain.entitie.Order;
 import org.springframework.stereotype.Component;
 

@@ -9,7 +9,7 @@ public record ResultOrderCreated(
         UUID id,
         Integer quantity
 ) {
-    public ResultOrderCreated(Order order) {
-        this(order.getCorrelationId(), order.getOrderId(), order.getQuantity());
+    public ResultOrderCreated(Order order, UUID productId) {
+        this(order.getCorrelationId(), order.getProductId(), order.getQuantity());
     }
 }

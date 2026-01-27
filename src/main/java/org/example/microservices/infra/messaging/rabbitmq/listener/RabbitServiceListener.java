@@ -3,6 +3,7 @@ package org.example.microservices.infra.messaging.rabbitmq.listener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.microservices.application.dto.shared.product.ListProductDto;
+import org.example.microservices.application.dto.shared.product.ProductDto;
 import org.example.microservices.application.dto.shared.response.PaymentReponseDto;
 import org.example.microservices.application.usecase.value.CalculateTotalValueOrderUseCase;
 import org.example.microservices.application.usecase.OrderEventCreatedPublisher;
@@ -22,7 +23,7 @@ public class RabbitServiceListener {
 
 
     @RabbitListener(queues = "products-decreased.queue")
-    public void calculateTotalValue(ListProductDto dto) {
+    public void calculateTotalValue(ProductDto dto) {
         var mapper = CommandMapper.listProductToCommand(dto);
         var result = calculate.execute(mapper);
         publisher.publish(result);

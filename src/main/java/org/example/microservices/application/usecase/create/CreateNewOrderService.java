@@ -21,7 +21,7 @@ public class CreateNewOrderService implements CreateNewOrderUseCase {
     public CompleteOrderDTO create(RequestOrderDTO command) {
         var order = new Order(command);
         repository.save(order);
-        var result = CommandMapper.getProduct(order);
+        var result = CommandMapper.getProduct(order, command.productId());
         publisher.publish(result);
         return OrderMapperDTO.createCompleteDto(order);
     }

@@ -1,5 +1,6 @@
 package org.example.microservices.application.usecase.update;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.application.dto.command.SetOrderStatus;
 import org.example.microservices.application.dto.result.ResultQuantityToRestock;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UpdateStatusPaymentService implements UpdateStatusPaymentUseCase {
     private final OrderRepository repository;
 

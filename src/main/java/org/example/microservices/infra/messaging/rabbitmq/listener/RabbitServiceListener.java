@@ -32,6 +32,8 @@ public class RabbitServiceListener {
     public void setOrderStatus(PaymentReponseDto paymentDto) {
         var mapper = CommandMapper.getPaymentStatus(paymentDto);
         var result = update.update(mapper);
-        publisher.publish(result);
+        if (result != null) {
+            publisher.publish(result);
+        }
     }
 }

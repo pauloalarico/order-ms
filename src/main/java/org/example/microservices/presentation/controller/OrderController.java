@@ -4,9 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.microservices.application.dto.command.RequestOrderDTO;
 import org.example.microservices.application.dto.shared.response.CompleteOrderDTO;
-import org.example.microservices.application.service.OrderService;
 import org.example.microservices.application.usecase.create.CreateNewOrderUseCase;
-import org.example.microservices.utils.OrderMapperDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,17 +13,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class OrderController {
     private final CreateNewOrderUseCase createOrder;
-    private final OrderService orderService;
 
     @PostMapping
     public ResponseEntity<CompleteOrderDTO> newOrder(@RequestBody @Valid RequestOrderDTO dto) {
         var order = createOrder.create(dto);
         return ResponseEntity.ok(order);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<CompleteOrderDTO> getOrder(@PathVariable String id) {
-        var order = orderService.getOrderByOrderId(id);
-        return ResponseEntity.ok(OrderMapperDTO.createCompleteDto(order));
     }
 }

@@ -1,6 +1,6 @@
 package org.example.microservices.application.dto.result;
 
-import org.example.microservices.domain.entitie.Order;
+import org.example.microservices.model.entitie.Order;
 
 import java.util.UUID;
 

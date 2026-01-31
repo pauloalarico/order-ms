@@ -1,7 +1,7 @@
 package org.example.microservices.application.dto.shared.response;
 
-import org.example.microservices.domain.entitie.Order;
-import org.example.microservices.domain.enums.StatusOrder;
+import org.example.microservices.model.entitie.Order;
+import org.example.microservices.model.enums.StatusOrder;
 
 import java.math.BigDecimal;
 import java.util.UUID;

@@ -1,11 +1,11 @@
-package org.example.microservices.domain.entitie;
+package org.example.microservices.model.entitie;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.example.microservices.application.dto.command.RequestOrderDTO;
-import org.example.microservices.domain.enums.StatusOrder;
+import org.example.microservices.model.enums.StatusOrder;
 
 import java.math.BigDecimal;
 import java.util.UUID;

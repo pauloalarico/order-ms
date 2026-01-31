@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.microservices.application.dto.command.RequestOrderDTO;
 import org.example.microservices.application.dto.shared.response.CompleteOrderDTO;
 import org.example.microservices.application.usecase.OrderEventCreatedPublisher;
-import org.example.microservices.domain.entitie.Order;
+import org.example.microservices.model.entitie.Order;
 import org.example.microservices.infra.repository.OrderRepository;
 import org.example.microservices.utils.CommandMapper;
 import org.example.microservices.utils.OrderMapperDTO;

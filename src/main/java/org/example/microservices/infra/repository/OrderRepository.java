@@ -1,6 +1,6 @@
 package org.example.microservices.infra.repository;
 
-import org.example.microservices.domain.entitie.Order;
+import org.example.microservices.model.entitie.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

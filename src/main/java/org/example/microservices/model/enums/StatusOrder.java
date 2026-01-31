@@ -1,4 +1,4 @@
-package org.example.microservices.domain.enums;
+package org.example.microservices.model.enums;
 
 public enum StatusOrder {
     CREATED,

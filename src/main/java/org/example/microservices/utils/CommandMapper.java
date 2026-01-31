@@ -3,10 +3,9 @@ package org.example.microservices.utils;
 import org.example.microservices.application.dto.command.CalculateOrderTotalValue;
 import org.example.microservices.application.dto.command.SetOrderStatus;
 import org.example.microservices.application.dto.result.ResultOrderCreated;
-import org.example.microservices.application.dto.shared.product.ListProductDto;
 import org.example.microservices.application.dto.shared.product.ProductDto;
 import org.example.microservices.application.dto.shared.response.PaymentReponseDto;
-import org.example.microservices.domain.entitie.Order;
+import org.example.microservices.model.entitie.Order;
 
 import java.util.UUID;
 
